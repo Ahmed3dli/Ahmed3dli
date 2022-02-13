@@ -1,0 +1,391 @@
+{
+  "info": {
+    "_postman_id": "9b78bcaf-dac3-4a90-b08e-452433c9559c",
+    "name": "ReqRes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Log in requests",
+      "item": [
+        {
+          "name": "Login while leaving fields blank",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "e920c0bf-68a5-4f98-81b1-abedb1eb996f",
+                "exec": [
+                  "pm.test(\"Missing email or username\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"error\");\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "8074e5ac-3841-4b19-a591-cd65fed26fb2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{url}}/api/login"
+          },
+          "response": []
+        },
+        {
+          "name": "Log in with valid credentials",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "85a31ece-5fd1-43df-8f63-374de4d46de4",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "pm.test(\"Body matches string\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"token\");\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "f301f7f8-9f2a-4498-a0be-e49d908056a4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"pistol\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{url}}/api/login"
+          },
+          "response": []
+        },
+        {
+          "name": "Log in with invalid email & valid password",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "9473aae4-8de5-4fb8-be3a-4364e3f88029",
+                "exec": [
+                  "pm.test(\"user not found\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"error\");\r",
+                  "});\r",
+                  "pm.test(\"Status code is 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "b2b8c32d-2363-46d4-8f7e-ced1401236ac",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"citystars\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{url}}/api/login"
+          },
+          "response": []
+        },
+        {
+          "name": "Log in with valid email & invalid password",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "43227751-8051-485d-8f10-f46a8c0c84e7",
+                "exec": [
+                  "pm.test(\"user not found\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"error\");\r",
+                  "});\r",
+                  "pm.test(\"Status code is 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "6ca40e31-0367-46b0-8727-01dd6256f018",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"eveholt@reqres.in\",\r\n    \"password\": \"pistol\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{url}}/api/login"
+          },
+          "response": []
+        },
+        {
+          "name": "Log in without entering email",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "73fba23a-742b-4fcc-8397-cc5a0a042c28",
+                "exec": [
+                  "pm.test(\"Missing password\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"error\");\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "392aa2f4-6931-46c5-bf8d-7ccc048fb8c0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n     \"email\": \"eve.holt@reqres.in\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{url}}/api/login"
+          },
+          "response": []
+        },
+        {
+          "name": "Log in without entering password",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "b4e239b6-8e7d-4eb5-8fee-e8d955bde027",
+                "exec": [
+                  "pm.test(\"Missing email or username\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"error\");\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "20f0a093-5074-484d-b513-c7a5b818e71a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n     \"password\": \"pistol\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{url}}/api/login"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "53a6da50-5b56-4a69-89ce-6927b551a5b0"
+    },
+    {
+      "name": "Register requests",
+      "item": [
+        {
+          "name": "Register correctly",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "9640516f-f2ee-468e-8239-ec57d2dc35a0",
+                "exec": [
+                  "pm.test(\"Successful POST request\", function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "98fa0164-7b9e-4ca8-920a-b07ed91fb4ca",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"pistol\"\r\n}\r\n \r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{url}}/api/register"
+          },
+          "response": []
+        },
+        {
+          "name": "Register without entering a password",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "1550da3a-be6f-4a2d-9ab3-bfcf1af63dc1",
+                "exec": [
+                  "pm.test(\"Missing password\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"error\");\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "6eb0cd72-b4bc-4a62-a71b-c49b801f6c0c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"abdelbaki70@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{url}}/api/register"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "db554a9f-de4a-49a4-b0e1-7ee8f0e64fe4"
+    },
+    {
+      "name": "List Users",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "b02a5744-3ced-4174-af05-4687ddbaa175",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "f4e7e1a3-4e56-4fdd-be7f-c4018550ea37",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/api/users?page=2",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "api",
+            "users"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "2"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get a Single User",
+      "_postman_id": "d0fc8953-966b-460f-992e-6e594bc5434f",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{url}}/api/users/4"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Unregistered User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "7f6a9ef4-65d4-45f0-95cb-6cec49cb49a2",
+            "exec": [
+              "pm.test(\"User is not found\", function () {\r",
+              "    pm.response.to.have.status(404);\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "179301b7-c67f-4d2f-a417-cf9455542323",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{url}}/api/users/23"
+      },
+      "response": []
+    }
+  ]
+}
