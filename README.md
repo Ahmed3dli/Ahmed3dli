@@ -1,5 +1,5 @@
 # 💫 About Me:
- have a passion for testing that has helped me to develop my skills . My testing background includes test planning, test design, manual and automation testing>
+ I have a passion for testing that has helped me to develop my skills. My testing background includes test planning, test design, manual and automation testing>
 
 
 ## 🌐 Socials:
