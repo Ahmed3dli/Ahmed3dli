@@ -1,4 +1,8 @@
 <div align="center">
+  <img src="./assets/header-banner.png" alt="Ahmed3dli — Software QA Engineer" width="100%" />
+</div>
+
+<div align="center">
 
 # Hi, I'm Ahmed
 
